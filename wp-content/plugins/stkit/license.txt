@@ -1,0 +1,17 @@
+This WordPress plugin is comprised of three parts:
+
+(1) The PHP code is licensed under the GPL license as is WordPress itself. You can read it here: http://codex.wordpress.org/GPL
+(2) Third-party scripts licensed under original licenses.
+(3) All other parts of the plugins including, but not limited to the CSS code, JS code, images, and design are NOT licensed under GPL license.
+
+You can:
+* Create a personal, and commercial sites for you and your clients using ST Kit.
+
+You cannot:
+* Include whole ST Kit or parts of ST Kit into your product (such as WordPress themes, WordPress plugins, or others) for selling to unlimited number of customers.
+* Redistribute ST Kit in any kind.
+
+
+
+StrictThemes
+info@strictthemes.com
