@@ -15,11 +15,11 @@ if ( ! class_exists( 'Services_JSON' ) ) :
  * ideal data-interchange language.
  *
  * This package provides a simple encoder and decoder for JSON notation. It
- * is intended for use with client-side JavaScript applications that make
+ * is intended for use with client-side Javascript applications that make
  * use of HTTPRequest to perform server communication functions - data can
- * be encoded into JSON notation for use in a client-side javaScript, or
- * decoded from incoming JavaScript requests. JSON format is native to
- * JavaScript, and can be directly eval()'ed with no further parsing
+ * be encoded into JSON notation for use in a client-side javascript, or
+ * decoded from incoming Javascript requests. JSON format is native to
+ * Javascript, and can be directly eval()'ed with no further parsing
  * overhead
  *
  * All strings should be in ASCII or UTF-8 format!
@@ -136,24 +136,17 @@ class Services_JSON
     *                                   from encode() should be checked with isError()
     *                           - SERVICES_JSON_USE_TO_JSON:  call toJSON when serializing objects
     *                                   It serializes the return value from the toJSON call rather 
-    *                                   than the object itself, toJSON can return associative arrays, 
+    *                                   than the object it'self,  toJSON can return associative arrays, 
     *                                   strings or numbers, if you return an object, make sure it does
     *                                   not have a toJSON method, otherwise an error will occur.
     */
-    function __construct( $use = 0 )
+    function Services_JSON($use = 0)
     {
         $this->use = $use;
         $this->_mb_strlen            = function_exists('mb_strlen');
         $this->_mb_convert_encoding  = function_exists('mb_convert_encoding');
         $this->_mb_substr            = function_exists('mb_substr');
     }
-
-	/**
-	 * PHP4 constructor.
-	 */
-	public function Services_JSON( $use = 0 ) {
-		self::__construct( $use );
-	}
     // private - cache the mbstring lookup results..
     var $_mb_strlen = false;
     var $_mb_substr = false;
@@ -252,7 +245,7 @@ class Services_JSON
     *
     * @param    mixed   $var    any number, boolean, string, array, or object to be encoded.
     *                           see argument 1 to Services_JSON() above for array-parsing behavior.
-    *                           if var is a string, note that encode() always expects it
+    *                           if var is a strng, note that encode() always expects it
     *                           to be in ASCII or UTF-8 format!
     *
     * @return   mixed   JSON string representation of input var or an error if a problem occurs
@@ -268,7 +261,7 @@ class Services_JSON
     *
     * @param    mixed   $var    any number, boolean, string, array, or object to be encoded.
     *                           see argument 1 to Services_JSON() above for array-parsing behavior.
-    *                           if var is a string, note that encode() always expects it
+    *                           if var is a strng, note that encode() always expects it
     *                           to be in ASCII or UTF-8 format!
     *
     * @return   mixed   JSON string representation of input var or an error if a problem occurs
@@ -289,7 +282,7 @@ class Services_JSON
     *
     * @param    mixed   $var    any number, boolean, string, array, or object to be encoded.
     *                           see argument 1 to Services_JSON() above for array-parsing behavior.
-    *                           if var is a string, note that encode() always expects it
+    *                           if var is a strng, note that encode() always expects it
     *                           to be in ASCII or UTF-8 format!
     *
     * @return   mixed   JSON string representation of input var or an error if a problem occurs
@@ -445,7 +438,7 @@ class Services_JSON
             case 'array':
                /*
                 * As per JSON spec if any array key is not an integer
-                * we must treat the whole array as an object. We
+                * we must treat the the whole array as an object. We
                 * also try to catch a sparsely populated associative
                 * array with numeric keys here because some JS engines
                 * will create an array with empty indexes up to
@@ -805,7 +798,7 @@ class Services_JSON
                                  ($top['what'] == SERVICES_JSON_IN_STR) &&
                                  (($this->strlen8($this->substr8($chrs, 0, $c)) - $this->strlen8(rtrim($this->substr8($chrs, 0, $c), '\\'))) % 2 != 1)) {
                             // found a quote, we're in a string, and it's not escaped
-                            // we know that it's not escaped because there is _not_ an
+                            // we know that it's not escaped becase there is _not_ an
                             // odd number of backslashes at the end of the string so far
                             array_pop($stk);
                             //print("Found end of string at {$c}: ".$this->substr8($chrs, $top['where'], (1 + 1 + $c - $top['where']))."\n");
@@ -917,17 +910,11 @@ if (class_exists('PEAR_Error')) {
 
     class Services_JSON_Error extends PEAR_Error
     {
-        function __construct($message = 'unknown error', $code = null,
+        function Services_JSON_Error($message = 'unknown error', $code = null,
                                      $mode = null, $options = null, $userinfo = null)
         {
             parent::PEAR_Error($message, $code, $mode, $options, $userinfo);
         }
-
-	public function Services_JSON_Error($message = 'unknown error', $code = null,
-                                     $mode = null, $options = null, $userinfo = null) {
-		self::__construct($message = 'unknown error', $code = null,
-                                     $mode = null, $options = null, $userinfo = null);
-	}
     }
 
 } else {
@@ -937,22 +924,11 @@ if (class_exists('PEAR_Error')) {
      */
     class Services_JSON_Error
     {
-	    /**
-	     * PHP5 constructor.
-	     */
-        function __construct( $message = 'unknown error', $code = null,
-                                     $mode = null, $options = null, $userinfo = null )
+        function Services_JSON_Error($message = 'unknown error', $code = null,
+                                     $mode = null, $options = null, $userinfo = null)
         {
 
         }
-
-	    /**
-	     * PHP4 constructor.
-	     */
-		public function Services_JSON_Error( $message = 'unknown error', $code = null,
-	                                     $mode = null, $options = null, $userinfo = null ) {
-			self::__construct( $message, $code, $mode, $options, $userinfo );
-		}
     }
     
 }
